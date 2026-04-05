@@ -21,8 +21,8 @@
   
   /* Typography Variables (Default) */
   --font-heading: 'Playfair Display', serif;
-  --font-body: 'Inter', sans-serif;
-  --font-display: 'Inter', sans-serif; /* Can be overridden later */
+  --font-body: 'Playfair Display', serif;
+  --font-display: 'Playfair Display', serif; /* Can be overridden later */
   
   /* Interactions */
   --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
@@ -1626,3 +1626,71 @@ a {
 #previewTo { font-size: 1.2rem; margin-bottom: 2rem; text-align: left; }
 #previewMsg { font-size: 1.4rem; line-height: 1.6; font-family: 'Dancing Script', cursive; flex: 1; display: flex; align-items: center; justify-content: center; }
 #previewFrom { font-size: 1.1rem; margin-top: 2rem; text-align: right; }
+
+/* ========================================================================= */
+/* Dark Mode Global Styles                                                     */
+/* ========================================================================= */
+
+body.dark-mode {
+  --bg-cream: #121016;
+  --primary-lavender: #2c254a;
+  --glass-bg: rgba(30, 30, 30, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+}
+
+body.dark-mode .page-title, body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode p {
+  color: #e0e0e0;
+}
+
+body.dark-mode .nav-link {
+  color: #f7d070;
+}
+
+body.dark-mode .glass-btn {
+  color: #f7d070;
+}
+
+body.dark-mode .reflection-content p {
+  background: var(--glass-bg);
+  color: #e0e0e0;
+  border-color: rgba(247, 208, 112, 0.3);
+}
+
+body.dark-mode .day-box {
+  color: #e0e0e0;
+  border-color: rgba(247, 208, 112, 0.3);
+}
+
+/* ========================================================================= */
+/* Simon Game Puzzle Styles                                                    */
+/* ========================================================================= */
+
+.simon-board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  width: 250px;
+  margin: 20px auto;
+}
+
+.simon-btn {
+  width: 100%;
+  height: 100px;
+  border-radius: 15px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.2s;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+.simon-btn.active {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px currentColor;
+}
+
+.simon-red { background: #e74c3c; color: #e74c3c; }
+.simon-blue { background: #3498db; color: #3498db; }
+.simon-yellow { background: #f1c40f; color: #f1c40f; }
+.simon-green { background: #2ecc71; color: #2ecc71; }

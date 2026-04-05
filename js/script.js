@@ -3,9 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticButtons();
     
     // Phase 2 additions
-    initFontSwitcher();
     initParallax();
-    applySavedFont(); // Apply font globally on every page load
     
     // Phase 3 additions
     initCalendar();
@@ -20,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Phase 6 additions
     initRewards();
     initCards();
+
+    // Dark Mode
+    initDarkMode();
 });
 
 /* ========================================================================= */
@@ -153,66 +154,6 @@ function initMagneticButtons() {
 }
 
 /* ========================================================================= */
-/* Phase 2: Font Switcher                                                      */
-/* ========================================================================= */
-
-const fonts = {
-    serif: "'Playfair Display', serif",
-    sans: "'Inter', sans-serif",
-    display: "'Fredoka', sans-serif",
-    minimal: "'Outfit', sans-serif"
-};
-
-function initFontSwitcher() {
-    const fontToggleBtn = document.getElementById('fontToggleBtn');
-    const fontPanel = document.getElementById('fontPanel');
-    const closeFontPanel = document.getElementById('closeFontPanel');
-    const fontOpts = document.querySelectorAll('.font-opt');
-
-    if (!fontToggleBtn || !fontPanel) return;
-
-    // Toggle Panel
-    fontToggleBtn.addEventListener('click', () => {
-        fontPanel.classList.add('active');
-    });
-
-    closeFontPanel.addEventListener('click', () => {
-        fontPanel.classList.remove('active');
-    });
-
-    // Handle Selection
-    fontOpts.forEach(opt => {
-        opt.addEventListener('click', () => {
-            // Remove selected class from all
-            fontOpts.forEach(o => o.classList.remove('selected'));
-            opt.classList.add('selected');
-
-            const fontName = opt.getAttribute('data-font');
-            const fontFamily = fonts[fontName];
-
-            document.documentElement.style.setProperty('--font-body', fontFamily);
-            document.documentElement.style.setProperty('--font-heading', fontFamily);
-
-            // Save to localStorage
-            localStorage.setItem('eggstra_font', fontName);
-        });
-    });
-
-    // Mark current selected in UI
-    const saved = localStorage.getItem('eggstra_font') || 'sans';
-    const activeOpt = document.querySelector(`.font-opt[data-font="${saved}"]`);
-    if(activeOpt) activeOpt.classList.add('selected');
-}
-
-function applySavedFont() {
-    const saved = localStorage.getItem('eggstra_font');
-    if (saved && fonts[saved]) {
-        document.documentElement.style.setProperty('--font-body', fonts[saved]);
-        document.documentElement.style.setProperty('--font-heading', fonts[saved]);
-    }
-}
-
-/* ========================================================================= */
 /* Phase 2: Parallax Scrolling                                                 */
 /* ========================================================================= */
 
@@ -294,11 +235,6 @@ function renderCalendar(totalDays, currentDay, completedDays) {
 
         // Interaction
         dayBox.addEventListener('click', () => {
-            if (i > currentDay && !isCompleted) {
-                // Cannot mark future day as complete
-                return;
-            }
-            
             // Show Proverb
             proverbText.innerText = `Day ${i}: ${fullProverbs[i-1]}`;
             
@@ -1213,32 +1149,50 @@ function initTextAdventure(onWin) {
         forest: {
             text: "The forest is dark. A squirrel offers you a shiny acorn. Do you take it?",
             choices: [
-                { label: "Take the acorn.", nextId: "squirrelWin" },
+                { label: "Take the acorn.", nextId: "squirrelPath" },
                 { label: "Ignore the squirrel.", nextId: "forestFail" }
             ]
         },
         river: {
             text: "You reach the river, but the bridge is broken. A frog croaks nearby.",
             choices: [
-                { label: "Listen to the frog.", nextId: "riverFail" },
-                { label: "Swim across the cold river.", nextId: "swim" }
+                { label: "Listen to the frog.", nextId: "frogPath" },
+                { label: "Swim across the cold river.", nextId: "swimFail" }
             ]
         },
-        squirrelWin: {
-            text: "The acorn cracks open to reveal a Golden Egg! The Bunny is pleased. +15 Reward Eggs!",
+        squirrelPath: {
+            text: "The squirrel points to a hidden cave. Do you enter the cave or keep walking?",
+            choices: [
+                { label: "Enter the cave.", nextId: "caveWin" },
+                { label: "Keep walking.", nextId: "forestFail" }
+            ]
+        },
+        frogPath: {
+            text: "The frog asks you a riddle: 'What comes once in a minute, twice in a moment, but never in a thousand years?'",
+            choices: [
+                { label: "The letter 'M'", nextId: "frogWin" },
+                { label: "An egg", nextId: "frogFail" }
+            ]
+        },
+        caveWin: {
+            text: "Inside the cave, you find a Golden Egg! The Bunny is pleased. +15 Reward Eggs!",
+            win: true
+        },
+        frogWin: {
+            text: "The frog smiles and hops away, revealing a Golden Egg underneath! +15 Reward Eggs!",
             win: true
         },
         forestFail: {
-            text: "You ignored the squirrel and got hopelessly lost in the woods. You must go back.",
+            text: "You got hopelessly lost in the woods. You must go back.",
             fail: true
         },
-        riverFail: {
-            text: "The frog talks for hours. You fell asleep and missed Easter.",
+        swimFail: {
+            text: "The current was too strong! You got washed ashore back where you started.",
             fail: true
         },
-        swim: {
-            text: "You swam across and found a basket full of Golden Eggs waiting for you! +15 Reward Eggs!",
-            win: true
+        frogFail: {
+            text: "The frog shakes its head. You fell asleep and missed Easter.",
+            fail: true
         }
     };
 
@@ -1431,3 +1385,33 @@ function initCards() {
     }
 }
 
+// Dark Mode Global Utility
+function initDarkMode() {
+    const toggleBtn = document.createElement('button');
+    toggleBtn.id = 'darkModeToggle';
+    toggleBtn.className = 'glass-btn small-btn';
+    toggleBtn.style.position = 'fixed';
+    toggleBtn.style.bottom = '20px';
+    toggleBtn.style.right = '20px';
+    toggleBtn.style.zIndex = '1000';
+    toggleBtn.innerText = '🌙 Dark Mode';
+
+    document.body.appendChild(toggleBtn);
+
+    const savedMode = localStorage.getItem('eggstra_darkmode');
+    if (savedMode === 'dark') {
+        document.body.classList.add('dark-mode');
+        toggleBtn.innerText = '☀️ Light Mode';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('eggstra_darkmode', 'dark');
+            toggleBtn.innerText = '☀️ Light Mode';
+        } else {
+            localStorage.setItem('eggstra_darkmode', 'light');
+            toggleBtn.innerText = '🌙 Dark Mode';
+        }
+    });
+}
