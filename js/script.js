@@ -1351,17 +1351,24 @@ function initCards() {
 
     if (!cardRecipient || !cardOutput) return;
 
+    // Set default message
+    const defaultMsg = "Wishing you a season filled with peace, joy, and beautiful weather. Happy Easter!";
+    if (cardMessage && !cardMessage.value) {
+        cardMessage.value = defaultMsg;
+        if(previewMsg) previewMsg.innerText = defaultMsg;
+    }
+
     // Live Preview
     cardRecipient.addEventListener('input', (e) => {
         previewTo.innerText = e.target.value ? `Dear ${e.target.value},` : "Dear ...,";
     });
 
     cardMessage.addEventListener('input', (e) => {
-        previewMsg.innerText = e.target.value || "Your message will appear here. Spread the joy of Easter!";
+        previewMsg.innerText = e.target.value || defaultMsg;
     });
 
     cardSender.addEventListener('input', (e) => {
-        previewFrom.innerText = e.target.value ? `With Love, ${e.target.value}` : "With Love, ...";
+        previewFrom.innerText = e.target.value ? `With Love, ${e.target.value}` : "With Love <3";
     });
 
     // Theme Switch
@@ -1372,8 +1379,20 @@ function initCards() {
             
             const theme = btn.getAttribute('data-theme');
             // Remove existing themes
-            cardOutput.classList.remove('theme-spring', 'theme-elegant', 'theme-playful');
+            cardOutput.classList.remove('theme-spring', 'theme-elegant', 'theme-playful', 'theme-vintage', 'theme-neon');
             cardOutput.classList.add(theme);
+
+            const themeIcons = {
+                'theme-spring': '🌸',
+                'theme-elegant': '✨',
+                'theme-playful': '🐰',
+                'theme-vintage': '🎀',
+                'theme-neon': '⚡'
+            };
+            const previewIcon = document.getElementById('previewIcon');
+            if(previewIcon) {
+                previewIcon.innerText = themeIcons[theme] || '🌸';
+            }
         });
     });
 

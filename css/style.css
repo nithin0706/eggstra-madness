@@ -1580,52 +1580,97 @@ a {
 
 .card-canvas {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   aspect-ratio: 3 / 4;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
   transition: all 0.5s;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
 .card-inner-border {
-  border: 2px solid rgba(0,0,0,0.1);
+  background: #ffffff;
   height: 100%;
-  border-radius: 8px;
-  padding: 2rem;
+  border-radius: 12px;
+  padding: 2.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 2;
+}
+
+/* Decorative flourishes */
+.card-inner-border::before, .card-inner-border::after {
+  content: "❦";
+  font-size: 1.5rem;
+  opacity: 0.6;
+  margin: 0.5rem 0;
+  display: block;
 }
 
 /* Themes */
 .theme-spring {
-  background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
-  color: #2c3e50;
+  background: radial-gradient(circle at top right, #ffecd2 0%, #fcb69f 100%);
+  color: #c0392b;
 }
-.theme-spring .card-inner-border { border-color: rgba(44, 62, 80, 0.2); }
+.theme-spring .card-inner-border { border: 1px solid rgba(252, 182, 159, 0.3); }
 
 .theme-elegant {
-  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  background: radial-gradient(circle at center, #fdfbfb 0%, #ebedee 100%);
   color: #b8860b;
   font-family: var(--font-heading);
 }
 .theme-elegant .card-inner-border { border: 2px solid #b8860b; }
 
 .theme-playful {
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+  background: radial-gradient(circle at bottom left, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
   color: #e84393;
   font-family: 'Fredoka', cursive;
 }
-.theme-playful .card-inner-border { border-style: dashed; border-width: 3px; border-color: #e84393; }
+.theme-playful .card-inner-border { border: 2px dashed rgba(232, 67, 147, 0.4); }
 
-#previewTo { font-size: 1.2rem; margin-bottom: 2rem; text-align: left; }
-#previewMsg { font-size: 1.4rem; line-height: 1.6; font-family: 'Dancing Script', cursive; flex: 1; display: flex; align-items: center; justify-content: center; }
-#previewFrom { font-size: 1.1rem; margin-top: 2rem; text-align: right; }
+.theme-vintage {
+  background: repeating-linear-gradient(45deg, #f3e5ab, #f3e5ab 10px, #d8bfd8 10px, #d8bfd8 20px);
+  color: #5c4033;
+  font-family: var(--font-heading);
+}
+.theme-vintage .card-inner-border { border: 2px double #5c4033; }
+
+.theme-neon {
+  background: #1a1a2e;
+  color: #e94560;
+  font-family: var(--font-body);
+}
+.theme-neon .card-inner-border { 
+  background: #16213e;
+  border: 1px solid #e94560; 
+  box-shadow: inset 0 0 15px rgba(233, 69, 96, 0.4), 0 10px 30px rgba(0,0,0,0.5);
+  color: #e94560;
+  text-shadow: 0 0 5px #e94560;
+}
+
+.card-icon-display {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+#previewTo { font-size: 1.2rem; margin-bottom: 1.5rem; text-align: left; }
+#previewMsg { font-size: 1.4rem; line-height: 1.6; font-family: 'Dancing Script', cursive; flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 1rem; }
+#previewFrom { font-size: 1.1rem; margin-top: 1.5rem; text-align: right; font-weight: 600; }
 
 /* ========================================================================= */
 /* Dark Mode Global Styles                                                     */
@@ -1634,32 +1679,114 @@ a {
 body.dark-mode {
   --bg-cream: #121016;
   --primary-lavender: #2c254a;
+  --primary-lavender-dark: #bfaaff;
   --glass-bg: rgba(30, 30, 30, 0.6);
   --glass-border: rgba(255, 255, 255, 0.1);
-  color: #e0e0e0;
+  --text-main: #e0e0e0;
+  --text-muted: #a0a0a0;
+  color: var(--text-main);
+  background-color: var(--bg-cream);
 }
 
-body.dark-mode .page-title, body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode p {
-  color: #e0e0e0;
+body.dark-mode .page-title, body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, 
+body.dark-mode h4, body.dark-mode h5, body.dark-mode h6, body.dark-mode p {
+  color: var(--text-main);
 }
 
-body.dark-mode .nav-link {
-  color: #f7d070;
+body.dark-mode .subtitle,
+body.dark-mode .reflection-content,
+body.dark-mode .daily-proverb p,
+body.dark-mode .grid-card p,
+body.dark-mode .recipe-desc,
+body.dark-mode .stat span,
+body.dark-mode .game-info p,
+body.dark-mode .story-text,
+body.dark-mode .control-group label,
+body.dark-mode .dashboard-bar h3,
+body.dark-mode .item-price,
+body.dark-mode .modal-content p,
+body.dark-mode .shop-item h4,
+body.dark-mode .recipe-chip {
+  color: var(--text-muted);
 }
 
-body.dark-mode .glass-btn {
-  color: #f7d070;
+body.dark-mode .nav-link,
+body.dark-mode .glass-btn,
+body.dark-mode .primary-btn {
+  color: var(--text-main);
+}
+
+body.dark-mode .glass-input {
+  color: var(--text-main);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 body.dark-mode .reflection-content p {
   background: var(--glass-bg);
-  color: #e0e0e0;
+  color: var(--text-main);
   border-color: rgba(247, 208, 112, 0.3);
 }
 
 body.dark-mode .day-box {
-  color: #e0e0e0;
-  border-color: rgba(247, 208, 112, 0.3);
+  background: rgba(0,0,0,0.4);
+  color: var(--text-main);
+  border-color: rgba(255,255,255,0.2);
+}
+
+body.dark-mode .day-box.completed,
+body.dark-mode .day-box.current {
+    color: #fff;
+}
+
+body.dark-mode .landing-page {
+  background: linear-gradient(-45deg, #121016, #2c254a, #121016, #1e1a2d);
+}
+
+body.dark-mode .landing-page::before {
+  background: conic-gradient(from 180deg at 50% 50%, rgba(155, 139, 235, 0.2) 0deg, rgba(247, 208, 112, 0.1) 180deg, rgba(155, 139, 235, 0.2) 360deg);
+}
+
+body.dark-mode .recipe-image-placeholder {
+  background-color: #2c254a;
+}
+
+body.dark-mode .code-problem {
+  background: #2a2510;
+  color: var(--text-main);
+}
+
+body.dark-mode .text-adventure-console {
+  background: #1e1a2d;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+  border-color: #3b3263;
+}
+
+body.dark-mode .catch-area {
+  background: linear-gradient(to bottom, rgba(163, 228, 215, 0.1), rgba(0,0,0,0));
+}
+
+body.dark-mode .memory-card {
+  background: linear-gradient(135deg, var(--primary-lavender) 0%, #1e1a2d 100%);
+}
+
+body.dark-mode .memory-card.flipped {
+  background: #2c254a;
+}
+
+body.dark-mode .cart-item,
+body.dark-mode .font-opt {
+  background: rgba(0,0,0,0.4);
+  color: var(--text-main);
+}
+
+body.dark-mode .game-tab,
+body.dark-mode .close-btn,
+body.dark-mode .ingredients-list li {
+  color: var(--text-main);
+}
+
+body.dark-mode .game-tab:hover {
+  background: rgba(0,0,0,0.4);
 }
 
 /* ========================================================================= */
