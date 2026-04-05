@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards Vault - Eggstra Madness</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@400;600&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-transition inner-page">
+
+    <!-- Minimal Navbar -->
+    <nav class="top-nav glass-panel">
+        <div class="nav-logo">
+            <a href="index.html">Eggstra Madness</a>
+        </div>
+        <div class="nav-links">
+            <a href="explore.html" class="nav-link">Explore</a>
+        </div>
+    </nav>
+    
+    <main class="rewards-container">
+        <header class="rewards-header fade-in">
+            <h1 class="page-title glow-text">The Rewards Vault</h1>
+            <p class="subtitle">Crack open the eggs you've earned from games to discover Shop Coins!</p>
+            
+            <div class="vault-stats glass-panel">
+                <div class="stat">
+                    <span>Reward Eggs:</span>
+                    <strong id="vaultEggsCount" class="glow-text">0</strong>
+                </div>
+                <div class="stat">
+                    <span>Shop Coins:</span>
+                    <strong id="vaultCoinsCount" class="glow-text" style="color:var(--accent-gold);">0</strong>
+                </div>
+            </div>
+        </header>
+
+        <section class="rewards-grid-wrapper fade-in">
+            <div id="rewardsGrid" class="rewards-grid">
+                <!-- Egg Grid will be populated by JS based on rewardEggs count -->
+                <div id="emptyVaultMsg" class="hidden">Play games in the Game Zone to earn more eggs!</div>
+            </div>
+        </section>
+
+        <!-- Dynamic Confetti Container -->
+        <div id="confettiContainer" class="confetti-container"></div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

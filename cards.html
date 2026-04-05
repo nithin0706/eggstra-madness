@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting Cards - Eggstra Madness</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@400;600&family=Fredoka:wght@400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-transition inner-page">
+
+    <!-- Minimal Navbar -->
+    <nav class="top-nav glass-panel">
+        <div class="nav-logo">
+            <a href="index.html">Eggstra Madness</a>
+        </div>
+        <div class="nav-links">
+            <a href="explore.html" class="nav-link">Explore</a>
+        </div>
+    </nav>
+    
+    <main class="cards-container">
+        <header class="cards-header fade-in">
+            <h1 class="page-title glow-text">Greeting Card Generator</h1>
+            <p class="subtitle">Design a beautiful Easter message for your loved ones.</p>
+        </header>
+
+        <div class="cards-layout fade-in">
+            <!-- Controls Side -->
+            <section class="cards-controls glass-panel">
+                <h3>Design Your Card</h3>
+                
+                <div class="control-group">
+                    <label>Select Theme:</label>
+                    <div class="theme-options">
+                        <button class="theme-btn active" data-theme="theme-spring">Spring Floral</button>
+                        <button class="theme-btn" data-theme="theme-elegant">Elegant Gold</button>
+                        <button class="theme-btn" data-theme="theme-playful">Playful Bunny</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="cardRecipient">To:</label>
+                    <input type="text" id="cardRecipient" class="glass-input full-width" placeholder="Dear Family,">
+                </div>
+
+                <div class="control-group">
+                    <label for="cardMessage">Message:</label>
+                    <textarea id="cardMessage" class="glass-input full-width" rows="4" placeholder="Wishing you a season of joy and renewal..."></textarea>
+                </div>
+                
+                <div class="control-group">
+                    <label for="cardSender">From:</label>
+                    <input type="text" id="cardSender" class="glass-input full-width" placeholder="With Love, John">
+                </div>
+
+                <button id="generateCardBtn" class="glass-btn primary-btn full-width magnetic-btn">Finish & Print <span class="glow"></span></button>
+            </section>
+
+            <!-- Preview Side -->
+            <section class="cards-preview">
+                <div id="cardOutput" class="card-canvas theme-spring">
+                    <div class="card-inner-border">
+                        <h4 id="previewTo">Dear ...,</h4>
+                        <p id="previewMsg">Your message will appear here. Spread the joy of Easter!</p>
+                        <h5 id="previewFrom">With Love, ...</h5>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

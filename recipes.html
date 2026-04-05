@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring & Easter Recipes - Eggstra Madness</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@400;600&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-transition inner-page">
+
+    <!-- Minimal Navbar -->
+    <nav class="top-nav glass-panel">
+        <div class="nav-logo">
+            <a href="index.html">Eggstra Madness</a>
+        </div>
+        <div class="nav-links">
+            <a href="explore.html" class="nav-link">Explore</a>
+        </div>
+    </nav>
+    
+    <main class="recipes-container">
+        <header class="recipes-header fade-in">
+            <h1 class="page-title glow-text">Global Easter Feast</h1>
+            <p class="subtitle">Interactive, scalable recipes from around the world to bless your table.</p>
+        </header>
+
+        <!-- Collection View -->
+        <section class="recipe-collection-layout fade-in" id="recipeCollectionLayout">
+            <div class="collection-header" style="text-align: center;">
+                <h2>Our Collection</h2>
+            </div>
+            <div class="recipe-grid-display" id="recipeSelector">
+                <!-- Image cards inserted by JS -->
+            </div>
+        </section>
+
+        <!-- View Area (Hidden initially) -->
+        <section class="recipe-viewer-container hidden fade-in" id="recipeViewerContainer">
+            <div style="margin-bottom: 2rem; text-align: center;">
+                <button id="backToCollectionBtn" class="glass-btn small-btn">&larr; Back to Collection</button>
+            </div>
+            <div class="recipe-viewer" id="recipeViewer">
+                <!-- Recipe will be rendered here dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

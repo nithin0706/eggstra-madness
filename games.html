@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Zone - Eggstra Madness</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@400;600&family=Fredoka:wght@400;600&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-transition inner-page">
+
+    <!-- Minimal Navbar -->
+    <nav class="top-nav glass-panel">
+        <div class="nav-logo">
+            <a href="index.html">Eggstra Madness</a>
+        </div>
+        <div class="nav-links">
+            <a href="explore.html" class="nav-link">Explore</a>
+        </div>
+    </nav>
+    
+    <main class="games-container">
+        
+        <!-- Interactive 3D Egg Header -->
+        <header class="games-header fade-in">
+            <div id="threejs-canvas-container" class="egg-3d-wrapper"></div>
+            <h1 class="page-title glow-text">The Game Zone</h1>
+            <p class="subtitle">Drag the golden egg above! Play games, earn reward eggs, and convert them to shop coins.</p>
+            <div class="game-wallet">
+                <span>Reward Eggs: <strong id="rewardEggsCount">0</strong> 🥚</span>
+            </div>
+        </header>
+
+        <section class="games-dashboard fade-in">
+            <!-- Game Tabs -->
+            <div class="game-tabs glass-panel">
+                <button class="game-tab active" data-target="gameMemory">Memory Match</button>
+                <button class="game-tab" data-target="gamePuzzle">Color Puzzle</button>
+                <button class="game-tab" data-target="gameCatch">Egg Catch</button>
+                <button class="game-tab" data-target="gameText">Text Adventure</button>
+                <button class="game-tab" data-target="gameCoding">Coding Sprint</button>
+            </div>
+
+            <!-- Game Arena -->
+            <div class="game-arena glass-panel">
+                
+                <!-- Memory Match -->
+                <div id="gameMemory" class="game-view active">
+                    <div class="game-info">
+                        <h2>Memory Match</h2>
+                        <p>How to play: Flip the cards to find matching pairs of Easter symbols. Find all pairs to win 5 eggs!</p>
+                        <div class="game-stats">Matches: <span id="memoryScore">0</span>/6</div>
+                    </div>
+                    <div id="memoryBoard" class="memory-board"></div>
+                    <div id="memoryWin" class="game-win hidden">
+                        <h3>You Won! 🎉</h3>
+                        <p>+5 Reward Eggs earned.</p>
+                        <button class="glass-btn small-btn reset-game-btn" data-game="memory">Play Again</button>
+                    </div>
+                </div>
+
+                <!-- Puzzle Game -->
+                <div id="gamePuzzle" class="game-view hidden">
+                    <div class="game-info">
+                        <h2>Color Pattern Puzzle</h2>
+                        <p>How to play: Click the lights in the exact order they blink. Survive 5 rounds to win 10 eggs!</p>
+                        <div class="game-stats">Round: <span id="puzzleRound">1</span>/5</div>
+                    </div>
+                    <div class="simon-board">
+                        <div class="simon-btn simon-red" data-color="0"></div>
+                        <div class="simon-btn simon-blue" data-color="1"></div>
+                        <div class="simon-btn simon-yellow" data-color="2"></div>
+                        <div class="simon-btn simon-green" data-color="3"></div>
+                    </div>
+                    <button id="startPuzzleBtn" class="glass-btn primary-btn mt-2">Start Game</button>
+                    <div id="puzzleStatus" class="puzzle-status"></div>
+                </div>
+
+                <!-- Egg Catch Simulator -->
+                <div id="gameCatch" class="game-view hidden">
+                    <div class="game-info">
+                        <h2>Egg Catch Simulator</h2>
+                        <p>How to play: Click the falling eggs before they hit the ground. Catch 10 eggs to win!</p>
+                        <div class="game-stats">Caught: <span id="catchScore">0</span> | Missed: <span id="catchMissed">0</span></div>
+                    </div>
+                    <div id="catchArea" class="catch-area">
+                        <!-- Eggs generated here via JS -->
+                    </div>
+                    <button id="startCatchBtn" class="glass-btn primary-btn mt-2">Start Game</button>
+                    <div id="catchStatus" class="catch-status"></div>
+                </div>
+
+                <!-- Text Adventure -->
+                <div id="gameText" class="game-view hidden">
+                    <div class="game-info">
+                        <h2>The Bunny's Quest</h2>
+                        <p>How to play: Read the story and make choices to find the hidden golden egg (Reward: 15 Eggs).</p>
+                    </div>
+                    <div class="text-adventure-console">
+                        <div id="storyText" class="story-text">You wake up in a blooming spring meadow. A rabbit path splits into two directions.</div>
+                        <div id="storyChoices" class="story-choices">
+                            <button class="glass-btn story-btn" data-choice="left">Go Left towards the forest.</button>
+                            <button class="glass-btn story-btn" data-choice="right">Go Right towards the river.</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coding Sprint -->
+                <div id="gameCoding" class="game-view hidden">
+                    <div class="game-info">
+                        <h2>Easter Coding Sprint</h2>
+                        <p>How to play: Fix the buggy JavaScript function to properly count the Easter eggs. Win 20 eggs!</p>
+                    </div>
+                    <div class="coding-arena">
+                        <div class="code-problem">
+                            <strong>Task:</strong> Fix the loop so it correctly counts how many 'egg' strings are in the array.
+                        </div>
+                        <textarea id="codeInput" class="code-editor" spellcheck="false">
+function countEggs(items) {
+  let count = 0;
+  for(let i=1; i < items.length; i++) { // Bug is here!
+    if(items[i] === 'egg') {
+      count = count + 1;
+    }
+  }
+  return count;
+}</textarea>
+                        <button id="runCodeBtn" class="glass-btn primary-btn magnetic-btn">Check Code <span class="glow"></span></button>
+                        <div id="codeFeedback" class="code-feedback mt-2"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

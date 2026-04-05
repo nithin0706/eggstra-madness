@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easter Basket Shop - Eggstra Madness</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@400;600&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-transition inner-page">
+
+    <!-- Minimal Navbar -->
+    <nav class="top-nav glass-panel">
+        <div class="nav-logo">
+            <a href="index.html">Eggstra Madness</a>
+        </div>
+        <div class="nav-links">
+            <a href="explore.html" class="nav-link">Explore</a>
+        </div>
+    </nav>
+    
+    <main class="shop-container">
+        <header class="shop-header fade-in">
+            <h1 class="page-title glow-text">Build Your Easter Basket</h1>
+            <p class="subtitle">Use your earned coins to curate the perfect gift.</p>
+        </header>
+
+        <div class="shop-layout fade-in">
+            <!-- Left Side: Shop Items -->
+            <section class="shop-items-grid">
+                <div class="dashboard-bar glass-panel">
+                    <h3>Wallet Balance</h3>
+                    <div class="coin-display">
+                        <span class="coin-icon">🪙</span>
+                        <span id="coinBalance" class="glow-text">100</span>
+                        <span class="max-coins">/ 300</span>
+                    </div>
+                </div>
+
+                <div class="items-grid">
+                    <div class="shop-item glass-panel">
+                        <div class="item-icon">🍫</div>
+                        <h4>Chocolate Bunny</h4>
+                        <p class="item-price">20 Coins</p>
+                        <button class="add-to-cart-btn btn-sm" data-id="choco" data-name="Chocolate Bunny" data-price="20" data-icon="🍫">Add</button>
+                    </div>
+                    <div class="shop-item glass-panel">
+                        <div class="item-icon">🥚</div>
+                        <h4>Painted Eggs</h4>
+                        <p class="item-price">10 Coins</p>
+                        <button class="add-to-cart-btn btn-sm" data-id="egg" data-name="Painted Eggs" data-price="10" data-icon="🥚">Add</button>
+                    </div>
+                    <div class="shop-item glass-panel">
+                        <div class="item-icon">💐</div>
+                        <h4>Spring Flowers</h4>
+                        <p class="item-price">30 Coins</p>
+                        <button class="add-to-cart-btn btn-sm" data-id="flower" data-name="Spring Flowers" data-price="30" data-icon="💐">Add</button>
+                    </div>
+                    <div class="shop-item glass-panel">
+                        <div class="item-icon">🎁</div>
+                        <h4>Premium Gift Box</h4>
+                        <p class="item-price">50 Coins</p>
+                        <button class="add-to-cart-btn btn-sm" data-id="gift" data-name="Premium Gift Box" data-price="50" data-icon="🎁">Add</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Side: The Basket -->
+            <aside class="basket-panel glass-panel">
+                <div class="basket-header">
+                    <h2>Your Basket 🧺</h2>
+                    <button id="resetBasketBtn" class="text-btn text-danger">Reset</button>
+                </div>
+                
+                <div id="basketCart" class="basket-cart">
+                    <p class="empty-basket-msg">Your basket is waiting to be filled.</p>
+                </div>
+
+                <div class="basket-footer">
+                    <div class="total-row">
+                        <span>Total:</span>
+                        <span id="basketTotal">0 Coins</span>
+                    </div>
+                    <button id="checkoutBtn" class="glass-btn primary-btn full-width magnetic-btn" disabled>
+                        Send Basket
+                        <span class="glow"></span>
+                    </button>
+                </div>
+                <!-- Warning Toast -->
+                <div id="coinWarning" class="toast-warning hidden">
+                    Not enough coins! Let's play some games to earn more.
+                </div>
+            </aside>
+        </div>
+        
+        <!-- Send Popup Modal -->
+        <div id="sendModal" class="modal-overlay hidden">
+            <div class="modal-content glass-panel zoom-in">
+                <h2>Basket Sent Successfully! ✨</h2>
+                <p>Your beautiful Easter basket has been curated and shipped virtually.</p>
+                <div class="basket-animation">🧺 ➡️ 🎁</div>
+                <button id="closeModalBtn" class="glass-btn">Return to Shop</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

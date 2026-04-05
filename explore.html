@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Features - Eggstra Madness</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@400;600&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-transition inner-page">
+
+    <!-- Minimal Navbar -->
+    <nav class="top-nav glass-panel">
+        <div class="nav-logo">
+            <a href="index.html">Eggstra Madness</a>
+        </div>
+        <div class="nav-links">
+            <a href="home.html" class="nav-link">Reflection</a>
+            <button id="fontToggleBtn" class="glass-btn small-btn">Aa Style</button>
+        </div>
+    </nav>
+
+    <!-- Font Style Switcher Panel (Left floating) -->
+    <aside id="fontPanel" class="font-panel glass-panel">
+        <button id="closeFontPanel" class="close-btn">&times;</button>
+        <h3>Typography</h3>
+        <p>Choose your preferred reading experience.</p>
+        <div class="font-options">
+            <button class="font-opt" data-font="serif" style="font-family: 'Playfair Display', serif;">Elegant Serif</button>
+            <button class="font-opt" data-font="sans" style="font-family: 'Inter', sans-serif;">Modern Sans</button>
+            <button class="font-opt" data-font="display" style="font-family: 'Fredoka', sans-serif;">Playful Display</button>
+            <button class="font-opt" data-font="minimal" style="font-family: 'Outfit', sans-serif;">Minimal Clean</button>
+        </div>
+    </aside>
+    
+    <main class="explore-container">
+        <header class="explore-header fade-in">
+            <h1 class="page-title glow-text">Choose Your Journey</h1>
+            <p class="subtitle">Engage with activities designed for this Easter season.</p>
+        </header>
+        
+        <section class="explore-grid">
+            <a href="calendar.html" class="grid-card fade-in glass-panel magnetic-card parallax" data-speed="0.02">
+                <div class="card-icon">📅</div>
+                <h2>Fasting Calendar</h2>
+                <p>Track your 50-day journey and reflect on daily proverbs.</p>
+            </a>
+            
+            <a href="basket.html" class="grid-card fade-in glass-panel magnetic-card parallax" data-speed="0.03">
+                <div class="card-icon">🧺</div>
+                <h2>Basket Shop</h2>
+                <p>Use your coins to build and send virtual Easter baskets.</p>
+            </a>
+            
+            <a href="recipes.html" class="grid-card fade-in glass-panel magnetic-card parallax" data-speed="0.04">
+                <div class="card-icon">🥞</div>
+                <h2>Spring Recipes</h2>
+                <p>Discover interactive step-by-step recipes for your brunch.</p>
+            </a>
+            
+            <a href="games.html" class="grid-card fade-in glass-panel magnetic-card parallax" data-speed="0.05">
+                <div class="card-icon">🎮</div>
+                <h2>Game Zone</h2>
+                <p>Play memory matches, catch eggs, and train your brain.</p>
+            </a>
+            
+            <a href="rewards.html" class="grid-card fade-in glass-panel magnetic-card parallax" data-speed="0.06">
+                <div class="card-icon">🥚</div>
+                <h2>Rewards Vault</h2>
+                <p>Crack open eggs you've earned to discover surprise coins.</p>
+            </a>
+            
+            <a href="cards.html" class="grid-card fade-in glass-panel magnetic-card parallax" data-speed="0.07">
+                <div class="card-icon">💌</div>
+                <h2>Greeting Cards</h2>
+                <p>Design and generate beautiful Easter cards to share.</p>
+            </a>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
